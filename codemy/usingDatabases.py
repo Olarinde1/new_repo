@@ -5,7 +5,7 @@ from PIL import ImageTk,Image
 from tkinter import filedialog
 root = Tk()
 root.title('Polymath Tech')
-root.iconbitmap('C:/Users/23480/Desktop/Datascience/Tkinter/codemy/umbrella.ico')
+root.iconbitmap('C:/Users/DELL/Desktop/Tkinter/new_repo/codemy/umbrella.ico')
 root.geometry("400x400")
 
 # creating or connecting to a database
