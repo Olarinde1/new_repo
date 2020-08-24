@@ -30,11 +30,11 @@ my_cursor = myDb.cursor()
 # my_cursor.execute("DROP TABLE customers")
 # creating a table
 
-my_cursor.execute("CREATE TABLE IF NOT EXIsTS customers (first_name VARCHAR(255),\
-   last_name VARCHAR(255),\
-   zipcode INT(10),\
-   price_paid DECIMAL(10, 2),\
-   user_id INT AUTO_INCREMENT PRIMARY KEY)")
+# my_cursor.execute("CREATE TABLE IF NOT EXIsTS customers (first_name VARCHAR(255),\
+#    last_name VARCHAR(255),\
+#    zipcode INT(10),\
+#    price_paid DECIMAL(10, 2),\
+#    user_id INT AUTO_INCREMENT PRIMARY KEY)")
 
 # # altering table
 # my_cursor.execute("ALTER TABLE customers ADD (\
@@ -45,6 +45,7 @@ my_cursor.execute("CREATE TABLE IF NOT EXIsTS customers (first_name VARCHAR(255)
 # state VARCHAR(50),\
 # country VARCHAR(255),\
 # phone VARCHAR(255),\
+# username VARCHAR(255),\
 # payment_method VARCHAR(50),\
 # discount_code VARCHAR(255))")
 # # show table
@@ -71,9 +72,11 @@ def clear_fields():
 
 # submitting customer to database
 def add_customer():
-   sql_command = "INSERT INTO customers (first_name. last_name, zipcode, price) VALUES (%s, %s, %s, %s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"
-   values = ""
-   my_cursor.execute(sql_customer, values)
+   sql_command = "INSERT INTO customers (first_name, last_name, address_1, address_2, city, state, zipcode, country, phone, email, username, payment_method, discount_code, price_paid) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
+   values = (first_name_box.get(), last_name_box.get(), address1_box.get(), address2_box.get(), city_box.get(), state_box.get(), zipcode_box.get(), country_box.get(), phone_box.get(), email_box.get(), username_box.get(), payment_method_box.get(), discount_code_box.get(), price_paid_box.get())
+   my_cursor.execute(sql_command, values)
+   myDb.commit()
+   clear_fields()
 #    print(x)
 # creating a label
 title_label = Label(root, text='Polymath Customer Database', font=('Helvetica', 16))
@@ -142,4 +145,9 @@ add_customer_btn = Button(root, text="Add Customer To Database", command=add_cus
 add_customer_btn.grid(row=15, column=0, padx=10, pady=10)
 clear_fields_button = Button(root, text="Clear Fields", command=clear_fields)
 clear_fields_button.grid(row=15, column=1)
+
+my_cursor.execute("SELECT * FROM customers")
+result = my_cursor.fetchall()
+for x in result:
+   print(x)
 root.mainloop() 
