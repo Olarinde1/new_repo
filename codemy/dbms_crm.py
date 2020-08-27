@@ -2,6 +2,7 @@ from tkinter import *
 import numpy as np
 import matplotlib.pyplot as plt
 import mysql.connector
+import csv
 
 root = Tk()
 root.title('Polymath Tech')
@@ -77,6 +78,24 @@ def add_customer():
    my_cursor.execute(sql_command, values)
    myDb.commit()
    clear_fields()
+# list customers
+
+def list_customers():
+   list_customers_query = Tk()
+   list_customers_query.title("List All Customers")
+   list_customers_query.iconbitmap('C:/Users/DELL/Desktop/Tkinter/new_repo/codemy/umbrella.ico')
+   list_customers_query.geometry("800x600")
+   # query the Database
+
+   my_cursor.execute("SELECT * FROM customers")
+   result = my_cursor.fetchall()
+   
+   for index, x in enumerate(result):
+      num = 0
+      for y in x:
+         lookup_label = Label(list_customers_query, text=y)
+         lookup_label.grid(row=index, column=num)
+         num+=1
 #    print(x)
 # creating a label
 title_label = Label(root, text='Polymath Customer Database', font=('Helvetica', 16))
@@ -145,6 +164,10 @@ add_customer_btn = Button(root, text="Add Customer To Database", command=add_cus
 add_customer_btn.grid(row=15, column=0, padx=10, pady=10)
 clear_fields_button = Button(root, text="Clear Fields", command=clear_fields)
 clear_fields_button.grid(row=15, column=1)
+
+# list customers buttons
+list_customers_button = Button(root, text="List Customers", command=list_customers)
+list_customers_button.grid(row=16, column=0, sticky=W, padx=10)
 
 my_cursor.execute("SELECT * FROM customers")
 result = my_cursor.fetchall()
