@@ -3,6 +3,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 import mysql.connector
 import csv
+from tkinter import ttk
+
 
 root = Tk()
 root.title('Polymath Tech')
@@ -86,6 +88,7 @@ def search_customers():
    search_customers_query.geometry("800x600")
 
    def search_now():
+      '''
       searched = search_box.get()
       sql = "SELECT * FROM customers WHERE last_name = %s"
       name = (searched, )
@@ -95,17 +98,24 @@ def search_customers():
          result = "Record Not Found..."
       searched_label = Label(search_customers_query, text=result)
       searched_label.grid(row=2, column=0, padx=10, columnspan=2)
+      '''
    # Entry box to search for customer
    search_box = Entry(search_customers_query)
    search_box.grid(row=0, column=1, padx=10, pady=10)
 
    # entry box label for customer
-   search_box_label = Label(search_customers_query, text="Search customer by last name")
+   search_box_label = Label(search_customers_query, text="Search Customers")
    search_box_label.grid(row=0, column=0, padx=10, pady=10)
 
    # entry box search button for customer
    search_button = Button(search_customers_query, text='Search customers', command=search_now)
    search_button.grid(row=1, column=0, padx=10)
+
+   #Dropdown box
+   drop = ttk.Combobox(search_customers_query, value=["Search by...", "Last Name", "Email address", "Customer ID"])
+   drop.current(0)
+   drop.grid(row=0, column=2)
+
 # write to csv function
 def write_to_csv(result):
      with open("customers.csv", "w", newline="") as f:
