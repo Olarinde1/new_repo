@@ -2,5 +2,8 @@
     "python.pythonPath": "C:\\Users\\DELL\\AppData\\Local\\Programs\\Python\\Python38\\python.exe",
     "python.linting.pylintEnabled": false,
     "python.linting.flake8Enabled": true,
-    "python.linting.enabled": true
+    "python.linting.enabled": true,
+    "extensions.ignoreRecommendations": true,
+    "C_Cpp.configurationWarnings": "Disabled",
+    "material-icon-theme.showReloadMessage": false
 }

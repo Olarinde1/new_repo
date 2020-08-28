@@ -78,8 +78,42 @@ def add_customer():
    my_cursor.execute(sql_command, values)
    myDb.commit()
    clear_fields()
-# list customers
 
+def search_customers():
+   search_customers_query = Tk()
+   search_customers_query.title("Search Customers")
+   search_customers_query.iconbitmap('C:/Users/DELL/Desktop/Tkinter/new_repo/codemy/umbrella.ico')
+   search_customers_query.geometry("800x600")
+
+   def search_now():
+      searched = search_box.get()
+      sql = "SELECT * FROM customers WHERE last_name = %s"
+      name = (searched, )
+      result = my_cursor.execute(sql, name)
+      result = my_cursor.fetchall()
+      if not result:
+         result = "Record Not Found..."
+      searched_label = Label(search_customers_query, text=result)
+      searched_label.grid(row=2, column=0, padx=10, columnspan=2)
+   # Entry box to search for customer
+   search_box = Entry(search_customers_query)
+   search_box.grid(row=0, column=1, padx=10, pady=10)
+
+   # entry box label for customer
+   search_box_label = Label(search_customers_query, text="Search customer by last name")
+   search_box_label.grid(row=0, column=0, padx=10, pady=10)
+
+   # entry box search button for customer
+   search_button = Button(search_customers_query, text='Search customers', command=search_now)
+   search_button.grid(row=1, column=0, padx=10)
+# write to csv function
+def write_to_csv(result):
+     with open("customers.csv", "w", newline="") as f:
+        w = csv.writer(f, dialect='excel')
+        for record in result:
+            w.writerow(record)
+            
+# list customers
 def list_customers():
    list_customers_query = Tk()
    list_customers_query.title("List All Customers")
@@ -96,6 +130,8 @@ def list_customers():
          lookup_label = Label(list_customers_query, text=y)
          lookup_label.grid(row=index, column=num)
          num+=1
+   csv_button = Button(list_customers_query, text="Click to save to excel", command=lambda: write_to_csv(result))
+   csv_button.grid(row=index+1, column=0)
 #    print(x)
 # creating a label
 title_label = Label(root, text='Polymath Customer Database', font=('Helvetica', 16))
@@ -169,8 +205,13 @@ clear_fields_button.grid(row=15, column=1)
 list_customers_button = Button(root, text="List Customers", command=list_customers)
 list_customers_button.grid(row=16, column=0, sticky=W, padx=10)
 
-my_cursor.execute("SELECT * FROM customers")
-result = my_cursor.fetchall()
-for x in result:
-   print(x)
+# search customers
+search_customers_button = Button(root, text="Search Customers", command=search_customers)
+search_customers_button.grid(row=16, column=1, sticky=W, padx=10)
+
+
+# my_cursor.execute("SELECT * FROM customers")
+# result = my_cursor.fetchall()
+# for index, x in enumerate(result):
+#    print(index)
 root.mainloop() 
