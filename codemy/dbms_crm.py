@@ -17,6 +17,7 @@ myDb = mysql.connector.connect(
     database="Polymath",
 )
 
+
 # print(myDb)
 # creating a cursor and initializing it
 my_cursor = myDb.cursor()
@@ -266,3 +267,5 @@ search_customers_button.grid(row=16, column=1, sticky=W, padx=10)
 # for index, x in enumerate(result):
 #    print(index)
 root.mainloop()
+csv_button = Button(list_customers_query, text="Click to save to excel", command=lambda: write_to_csv(result))
+    csv_button.grid(row=index + 1, column=0)

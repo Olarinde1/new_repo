@@ -5,5 +5,20 @@
     "python.linting.enabled": true,
     "extensions.ignoreRecommendations": true,
     "C_Cpp.configurationWarnings": "Disabled",
-    "material-icon-theme.showReloadMessage": false
+    "material-icon-theme.showReloadMessage": false,
+    "sqltools.connections": [
+        {
+            "askForPassword": true,
+            "database": "polymath",
+            "driver": "MySQL",
+            "mysqlOptions": {
+                "authProtocol": "default"
+            },
+            "name": "Polymath",
+            "port": 3306,
+            "previewLimit": 50,
+            "server": "127.0.0.1",
+            "username": "root"
+        }
+    ]
 }
