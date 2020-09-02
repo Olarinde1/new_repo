@@ -91,7 +91,68 @@ def search_customers():
     search_customers_query = Tk()
     search_customers_query.title("Search Customers")
     search_customers_query.iconbitmap('C:/Users/DELL/Desktop/Tkinter/new_repo/codemy/umbrella.ico')
-    search_customers_query.geometry("1000x600")
+    search_customers_query.geometry("1100x600")
+
+    def edit_now(id, row): 
+        first_name_label = Label(root, text="First Name").grid(row=1, column=0, sticky=W, padx=10)
+        last_name_label = Label(root, text="Last Name").grid(row=2, column=0, sticky=W, padx=10)
+        address1_label = Label(root, text="Address 1").grid(row=3, column=0, sticky=W, padx=10)
+        address2_label = Label(root, text="Address 2").grid(row=4, column=0, sticky=W, padx=10)
+        city_label = Label(root, text="City").grid(row=5, column=0, sticky=W, padx=10)
+        state_label = Label(root, text="State").grid(row=6, column=0, sticky=W, padx=10)
+        zipcode_label = Label(root, text="Zipcode").grid(row=7, column=0, sticky=W, padx=10)
+        country_label = Label(root, text="Country").grid(row=8, column=0, sticky=W, padx=10)
+        phone_label = Label(root, text="Phone Number").grid(row=9, column=0, sticky=W, padx=10)
+        email_label = Label(root, text="Email Address").grid(row=10, column=0, sticky=W, padx=10)
+        username_label = Label(root, text="Username").grid(row=11, column=0, sticky=W, padx=10)
+        payment_method_label = Label(root, text="Payment Method").grid(row=12, column=0, sticky=W, padx=10)
+        discount_code_label = Label(root, text="Discount Code").grid(row=13, column=0, sticky=W, padx=10)
+        price_paid_label = Label(root, text="Price Paid").grid(row=14, column=0, sticky=W, padx=10)
+
+        # entry boxes
+        first_name_box1 = Entry(root)
+        first_name_box1.grid(row=1, column=1)
+
+        last_name_box1 = Entry(root)
+        last_name_box1.grid(row=2, column=1, pady=5)
+
+        address1_box1 = Entry(root)
+        address1_box1.grid(row=3, column=1, pady=5)
+
+        address2_box1 = Entry(root)
+        address2_box1.grid(row=4, column=1, pady=5)
+
+        city_box1 = Entry(root)
+        city_box1.grid(row=5, column=1, pady=5)
+
+        state_box1 = Entry(root)
+        state_box1.grid(row=6, column=1, pady=5)
+
+        zipcode_box1 = Entry(root)
+        zipcode_box1.grid(row=7, column=1, pady=5)
+
+        country_box1 = Entry(root)
+        country_box1.grid(row=8, column=1, pady=5)
+
+        phone_box1 = Entry(root)
+        phone_box1.grid(row=9, column=1, pady=5)
+
+        email_box1 = Entry(root)
+        email_box1.grid(row=10, column=1, pady=5)
+
+        username_box1 = Entry(root)
+        username_box1.grid(row=11, column=1, pady=5)
+
+        payment_method_box1 = Entry(root)
+        payment_method_box1.grid(row=12, column=1, pady=5)
+
+        discount_code_box1 = Entry(root)
+        discount_code_box1.grid(row=13, column=1, pady=5)
+
+        price_paid_box1 = Entry(root)
+        price_paid_box1.grid(row=14, column=1, pady=5)
+
+
 
     def search_now():
         sql = ""
@@ -128,9 +189,12 @@ def search_customers():
             for index, x in enumerate(result):
                 num = 0
                 index += 2
+                id_reference = str(x[4])
+                edit_button = Button(search_customers_query, text='Edit ' , command=lambda: edit_now(id_reference, index))
+                edit_button.grid(row=index, column=num)
                 for y in x:
                     searched_label = Label(search_customers_query, text=y)
-                    searched_label.grid(row=index, column=num)
+                    searched_label.grid(row=index, column=num+1)
                     num += 1
             csv_button = Button(search_customers_query, text="Click to save to excel", command=lambda: write_to_csv(result))
             csv_button.grid(row=index + 1, column=0)
@@ -259,7 +323,7 @@ list_customers_button = Button(root, text="List Customers", command=list_custome
 list_customers_button.grid(row=16, column=0, sticky=W, padx=10)
 
 # search customers
-search_customers_button = Button(root, text="Search Customers", command=search_customers)
+search_customers_button = Button(root, text="Search/Edit Customers", command=search_customers)
 search_customers_button.grid(row=16, column=1, sticky=W, padx=10)
 
 # my_cursor.execute("SELECT * FROM customers")
@@ -267,5 +331,5 @@ search_customers_button.grid(row=16, column=1, sticky=W, padx=10)
 # for index, x in enumerate(result):
 #    print(index)
 root.mainloop()
-csv_button = Button(list_customers_query, text="Click to save to excel", command=lambda: write_to_csv(result))
-    csv_button.grid(row=index + 1, column=0)
+# csv_button = Button(list_customers_query, text="Click to save to excel", command=lambda: write_to_csv(result))
+# csv_button.grid(row=index + 1, column=0)
