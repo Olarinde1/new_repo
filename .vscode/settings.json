@@ -1,5 +1,5 @@
 {
-    "python.pythonPath": "kivy_venv\\Scripts\\python.exe",
+    "python.pythonPath": "C:\\Users\\DELL\\AppData\\Local\\Programs\\Python\\Python36\\python.exe",
     "python.linting.pylintEnabled": true,
     "python.linting.flake8Enabled": false,
     "python.linting.enabled": true,
