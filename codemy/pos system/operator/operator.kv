@@ -1,0 +1,29 @@
+<flatButton@ButtonBehaviour+Label>
+    font_size: 14
+<OperatorWindow>:
+    id: main_win
+    orientation: 'vertical'
+    canvas.before:
+        color:
+            rgba: (1, 1, 1, 1)
+        Rectangle:
+            size: self.size
+            pos: self.pos
+
+    BoxLayout:
+        id: header
+        size_hint_y: None
+        height: 40
+        canvas.before:
+            color:
+                rgba: (1, 1, 1, 1)
+            Rectangle:
+                size: self.size
+                pos: self.pos
+        Label:
+            text: "PolymathPOS System"
+            size_hint_x: .9
+            bold: True
+        FlatButton:
+            id: Loggedin_user
+            text: "polymath"
