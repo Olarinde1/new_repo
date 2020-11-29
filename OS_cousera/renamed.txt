@@ -1,0 +1,4 @@
+I will use this file to interact with my operating system
+its fun and easy to work with 
+i hope i enjoy every bit of it
+I'm learning how to use it for automation in python
