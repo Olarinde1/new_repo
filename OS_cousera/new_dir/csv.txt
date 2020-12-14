@@ -1,0 +1,5 @@
+Name, Phone_Number, Role
+Alli Olarinde, 0001221120, Developer
+Umar Olarinde, 0909002301, Graphics
+Uthman Olarinde, 19019201, Programmer
+Abubakri Olarinde, 121232, Programmer
