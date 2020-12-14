@@ -8,12 +8,12 @@ response = requests.get("https://www.google.com")
 print(response)
 if response.status_code == 200:
     print('Ok')
-date = arrow.get("2020-11-26", "YYYY-MM-DD")
 new_date = date.shift(weeks=+6).format("MMM DD YYYY")
+date = arrow.get("2020-11-26", "YYYY-MM-DD")
 print(new_date)
 # image = pi.open('houses.jpg')
-# print(image.size)
 visitors = [1223, 123, 13342, 33321, 1112]
+# print(image.size)
 errors = [23, 45, 33, 11, 98]
 df = pd.DataFrame({'visitors': visitors, 'errors':errors}, index=['Mon', 'Tues', 'Wed', 'Thur', 'Fri'])
 print(df)
